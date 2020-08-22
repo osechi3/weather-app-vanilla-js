@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 600px;
+  height: 400px;
+  margin: 100px auto;
+
+  outline: 1px solid;
+}
+.search-container {
+  outline: 1px solid;
+}
+.weather-container {
+  display: flex;
+
+  outline: 1px solid;
+}
+.extra-info-container {
+  display: flex;
+  flex-direction: column;
+
+  outline: 1px solid;
+}
