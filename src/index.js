@@ -1,26 +1,26 @@
-function getWeatherData () {
-  const baseURL = 'https://api.openweathermap.org/data/2.5/weather'
-  const APIKey = 'fd7cfe090aef0df3ea6c07e20f009d58'
-  fetch(`${baseURL}?q=California&appid=${APIKey}`, { mode: 'cors' })
-    .then(response => {
-      console.log(response)
-      return response.json()
-    })
-    .then(data => {
-      console.log(data)
-      const fetchedWeatherData = {
-        location: data.name,
-        timezoneShift: data.timezone,
-        windSpeed: data.wind.speed,
-        temperatureKelvin: data.main.temp,
-        temperatureFeelsLike: data.main.feels_like,
-        humidityLevel: data.main.humidity,
-        weatherDescription: data.weather[0]
-      }
-      console.log(fetchedWeatherData)
-    })
-    .catch(error => {
-      console.log(error)
-    })
+import { WeatherData } from './components/WeatherData'
+import { SearchBar } from './components/SearchBar'
+
+export class App {
+  static weatherData = new WeatherData()
+  static searchBar = new SearchBar()
+
+  static init () {
+    this.render()
+    this.weatherData.getWeatherData()
+  }
+
+  static render () {
+    const rootElement = document.querySelector('#app')
+    const mainContainer = document.createElement('div')
+
+    rootElement.append(mainContainer)
+    mainContainer.append(this.searchBar.render())
+  }
+
+  static sendWeatherRequest () {
+    this.weatherData.getWeatherData()
+  }
 }
-console.log(getWeatherData())
+
+App.init()
