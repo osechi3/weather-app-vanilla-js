@@ -34,7 +34,7 @@ export class WeatherData extends Component {
   }
 
   render () {
-    const containerData = this.createBaseElement('div', 'container-data')
+    const containerData = this.createBaseElement('div', null, 'container-data')
     containerData.innerHTML = `
       <div class="block-main-info">
         <div class="group-icon">
