@@ -1,5 +1,8 @@
-export class WeatherData {
-  constructor () {
+import { Component } from './Component'
+
+export class WeatherData extends Component {
+  constructor (parentElement, shouldRender) {
+    super(parentElement, shouldRender)
     this.weatherData = {}
   }
 
@@ -31,8 +34,7 @@ export class WeatherData {
   }
 
   render () {
-    const containerData = document.createElement('div')
-    containerData.className = 'container-data'
+    const containerData = this.createBaseElement('div', 'container-data')
     containerData.innerHTML = `
       <div class="block-main-info">
         <div class="group-icon">
@@ -56,6 +58,5 @@ export class WeatherData {
         <p class="description-additional-info">${this.weatherData.timezoneShift}</p>
       </div>
     `
-    return containerData
   }
 }
