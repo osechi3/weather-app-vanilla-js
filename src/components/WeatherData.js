@@ -34,6 +34,78 @@ export class WeatherData extends Component {
       })
   }
 
+  render () {
+    // Updating the old element if there is one
+    const previousElement = document.querySelector('#container-data')
+    if (previousElement) this.parentElement.removeChild(previousElement)
+
+    const containerData = this.createBaseElement('div', null, 'container-data')
+    containerData.innerHTML = `
+      <div class="block-main-info">
+        <div class="group-icon">
+          <img src="#">
+          <p class="description-icon">
+            ${this.weatherData.weatherDescription.main}
+          </p>
+        </div>
+        <div class="group-temperature">
+          <p id="description-temperature">
+            ${this.convertToCelsius(this.weatherData.temperatureKelvin)}°C
+          </p>
+          <div class="buttons-temperature">
+            <button id="btn-celsius" type="button">°C</button>
+            <button id="btn-fahrenheit" type="button">°F</button>
+          </div>
+        </div>
+      </div>
+      <div class="block-additional-info">
+        <p class="description-additional-info" id="description-feels-like">
+          Feels like: ${this.convertToCelsius(this.weatherData.temperatureFeelsLike)}°C
+        </p>
+        <p class="description-additional-info">
+          Wind: ${this.weatherData.windSpeed} m/s
+        </p>
+        <p class="description-additional-info">
+          Humidity: ${this.weatherData.humidityLevel}%
+        </p>
+        <p class="description-additional-info">${this.weatherData.time}</p>
+      </div>
+    `
+
+    const buttonCelsius = containerData.querySelector('#btn-celsius')
+    const buttonFahrenheit = containerData.querySelector('#btn-fahrenheit')
+    const descriptionTemperature =
+      containerData.querySelector('#description-temperature')
+    const descriptionFeelsLike =
+      containerData.querySelector('#description-feels-like')
+
+    buttonCelsius.addEventListener('click', () => {
+      descriptionTemperature.innerHTML = `
+        <p id="description-temperature">
+          ${this.convertToCelsius(this.weatherData.temperatureKelvin)}°C
+        </p>
+      `
+      descriptionFeelsLike.innerHTML = `
+        <p class="description-additional-info" id="description-feels-like">
+          Feels like: ${this.convertToCelsius(this.weatherData.temperatureFeelsLike)}°C
+        </p>
+      `
+    })
+
+    buttonFahrenheit.addEventListener('click', () => {
+      descriptionTemperature.innerHTML = `
+        <p id="description-temperature">
+          ${this.convertToFahrenheit(this.weatherData.temperatureKelvin)}°F
+        </p>
+      `
+      descriptionFeelsLike.innerHTML = `
+        <p class="description-additional-info" id="description-feels-like">
+          Feels like: ${this.convertToFahrenheit(this.weatherData.temperatureFeelsLike)}°F
+        </p>
+      `
+    })
+  }
+
   calculateTime (timezoneShift) {
     const currentLocalTimeMs = new Date().getTime()
     const localOffsetUTCMs = new Date().getTimezoneOffset() * 60 * 1000
@@ -49,34 +121,11 @@ export class WeatherData extends Component {
     return desiredTimeHours + ':' + desiredTimeMinutes
   }
 
-  render () {
-    // Updating the old element if there is one
-    const previousElement = document.querySelector('#container-data')
-    if (previousElement) this.parentElement.removeChild(previousElement)
+  convertToCelsius (temperatureKelvin) {
+    return Math.round(temperatureKelvin - 273.15)
+  }
 
-    const containerData = this.createBaseElement('div', null, 'container-data')
-    containerData.innerHTML = `
-      <div class="block-main-info">
-        <div class="group-icon">
-          <img src="#">
-          <p
-            class="description-icon">${this.weatherData.weatherDescription.main}
-          </p>
-        </div>
-        <div class="group-temperature">
-          <p>${this.weatherData.temperatureKelvin}</p>
-          <div class="buttons-temperature">
-            <button id="btn-celsius" type="button">°C</button>
-            <button id="btn-fahrenheit" type="button">°F</button>
-          </div>
-        </div>
-      </div>
-      <div class="block-additional-info">
-        <p class="description-additional-info">Feels like: ${this.weatherData.temperatureFeelsLike}</p>
-        <p class="description-additional-info">Wind: ${this.weatherData.windSpeed} m/s</p>
-        <p class="description-additional-info">Humidity: ${this.weatherData.humidityLevel}%</p>
-        <p class="description-additional-info">${this.weatherData.time}</p>
-      </div>
-    `
+  convertToFahrenheit (temperatureKelvin) {
+    return Math.round(temperatureKelvin * 1.8 - 459.67)
   }
 }
