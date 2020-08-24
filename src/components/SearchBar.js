@@ -17,6 +17,12 @@ export class SearchBar extends Component {
     const button = containerSearch.querySelector('button')
     button.addEventListener('click', () => {
       App.sendWeatherRequest(input.value)
+      this.moveInputTextToPlaceholder(input)
     })
+  }
+
+  moveInputTextToPlaceholder (element) {
+    element.placeholder = element.value
+    element.value = ''
   }
 }
