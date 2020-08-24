@@ -3,6 +3,7 @@ import { Component } from './Component'
 export class WeatherData extends Component {
   constructor (parentElement, shouldRender) {
     super(parentElement, shouldRender)
+    this.parentElement = parentElement
     this.weatherData = {}
   }
 
@@ -34,6 +35,10 @@ export class WeatherData extends Component {
   }
 
   render () {
+    // Updating the old element if there is one
+    const previousElement = document.querySelector('#container-data')
+    if (previousElement) this.parentElement.removeChild(previousElement)
+
     const containerData = this.createBaseElement('div', null, 'container-data')
     containerData.innerHTML = `
       <div class="block-main-info">
