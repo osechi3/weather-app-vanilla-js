@@ -10,5 +10,6 @@ export class SearchBar extends Component {
     `
     const button = containerSearch.querySelector('button')
     button.addEventListener('click', App.sendWeatherRequest.bind(App))
+    return containerSearch
   }
 }
