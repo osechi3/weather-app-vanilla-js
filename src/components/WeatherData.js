@@ -6,7 +6,7 @@ export class WeatherData {
   getWeatherData () {
     const baseURL = 'https://api.openweathermap.org/data/2.5/weather'
     const APIKey = 'fd7cfe090aef0df3ea6c07e20f009d58'
-    fetch(`${baseURL}?q=California&appid=${APIKey}`, { mode: 'cors' })
+    return fetch(`${baseURL}?q=California&appid=${APIKey}`, { mode: 'cors' })
       .then(response => {
         console.log(response)
         return response.json()
@@ -24,7 +24,6 @@ export class WeatherData {
         }
         console.log(fetchedWeatherData)
         this.weatherData = fetchedWeatherData
-        this.render()
       })
       .catch(error => {
         console.log(error)
