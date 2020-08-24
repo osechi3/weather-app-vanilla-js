@@ -1,3 +1,4 @@
+import '../style.css'
 import { Component } from './Component'
 import { App } from '../index'
 
@@ -18,6 +19,13 @@ export class SearchBar extends Component {
     button.addEventListener('click', () => {
       App.sendWeatherRequest(input.value)
       this.moveInputTextToPlaceholder(input)
+      button.classList.add('hidden')
+    })
+
+    input.addEventListener('input', function () {
+      if (this.value !== '' && button.className.includes('hidden')) {
+        button.classList.remove('hidden')
+      }
     })
   }
 

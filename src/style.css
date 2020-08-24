@@ -26,3 +26,8 @@ body {
 
   outline: 1px solid;
 }
+
+/* Helper classes */
+.hidden {
+  display: none;
+}

@@ -1,3 +1,4 @@
+import './style.css'
 import { WeatherData } from './components/WeatherData'
 import { SearchBar } from './components/SearchBar'
 
