@@ -7,10 +7,10 @@ export class WeatherData extends Component {
     this.weatherData = {}
   }
 
-  getWeatherData () {
+  getWeatherData (city) {
     const baseURL = 'https://api.openweathermap.org/data/2.5/weather'
     const APIKey = 'fd7cfe090aef0df3ea6c07e20f009d58'
-    return fetch(`${baseURL}?q=California&appid=${APIKey}`, { mode: 'cors' })
+    return fetch(`${baseURL}?q=${city}&appid=${APIKey}`, { mode: 'cors' })
       .then(response => {
         console.log(response)
         return response.json()

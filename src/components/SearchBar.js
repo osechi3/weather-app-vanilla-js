@@ -13,7 +13,10 @@ export class SearchBar extends Component {
       <input type="text" placeholder="Enter city"></input>
       <button>Search</button>
     `
+    const input = containerSearch.querySelector('input')
     const button = containerSearch.querySelector('button')
-    button.addEventListener('click', App.sendWeatherRequest.bind(App))
+    button.addEventListener('click', () => {
+      App.sendWeatherRequest(input.value)
+    })
   }
 }

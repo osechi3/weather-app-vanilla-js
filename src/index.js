@@ -6,9 +6,9 @@ export class App {
   static searchBar = new SearchBar(this.rootElement)
   static weatherData = new WeatherData(this.rootElement, false)
 
-  static async sendWeatherRequest () {
+  static async sendWeatherRequest (city) {
     try {
-      await this.weatherData.getWeatherData()
+      await this.weatherData.getWeatherData(city)
       this.weatherData.render()
     } catch (error) {
       console.log(error)
