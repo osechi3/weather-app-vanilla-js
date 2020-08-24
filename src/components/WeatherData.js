@@ -24,7 +24,8 @@ export class WeatherData extends Component {
           temperatureKelvin: data.main.temp,
           temperatureFeelsLike: data.main.feels_like,
           humidityLevel: data.main.humidity,
-          weatherDescription: data.weather[0]
+          weatherDescription: data.weather[0],
+          iconURL: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
         }
         console.log(fetchedWeatherData)
         this.weatherData = fetchedWeatherData
@@ -43,7 +44,7 @@ export class WeatherData extends Component {
     containerData.innerHTML = `
       <div class="block-main-info">
         <div class="group-icon">
-          <img src="#">
+          <img src="${this.weatherData.iconURL}">
           <p class="description-icon">
             ${this.weatherData.weatherDescription.main}
           </p>
