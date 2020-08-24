@@ -17,8 +17,12 @@ export class App {
   }
 
   static async sendWeatherRequest () {
-    await this.weatherData.getWeatherData()
-    this.mainContainer.append(this.weatherData.render())
+    try {
+      await this.weatherData.getWeatherData()
+      this.mainContainer.append(this.weatherData.render())
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
