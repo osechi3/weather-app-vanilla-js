@@ -4,6 +4,7 @@ import { SearchBar } from './components/SearchBar'
 export class App {
   static weatherData = new WeatherData()
   static searchBar = new SearchBar()
+  static mainContainer = document.createElement('div')
 
   static init () {
     this.render()
@@ -12,14 +13,13 @@ export class App {
 
   static render () {
     const rootElement = document.querySelector('#app')
-    const mainContainer = document.createElement('div')
-
-    rootElement.append(mainContainer)
-    mainContainer.append(this.searchBar.render())
+    rootElement.append(this.mainContainer)
+    this.mainContainer.append(this.searchBar.render())
   }
 
-  static sendWeatherRequest () {
-    this.weatherData.getWeatherData()
+  static async sendWeatherRequest () {
+    await this.weatherData.getWeatherData()
+    this.mainContainer.append(this.weatherData.render())
   }
 }
 
