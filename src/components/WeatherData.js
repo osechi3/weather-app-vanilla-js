@@ -19,7 +19,7 @@ export class WeatherData extends Component {
         console.log(data)
         const fetchedWeatherData = {
           location: data.name,
-          timezoneShift: data.timezone,
+          time: this.calculateTime(data.timezone),
           windSpeed: data.wind.speed,
           temperatureKelvin: data.main.temp,
           temperatureFeelsLike: data.main.feels_like,
@@ -32,6 +32,21 @@ export class WeatherData extends Component {
       .catch(error => {
         console.log(error)
       })
+  }
+
+  calculateTime (timezoneShift) {
+    const currentLocalTimeMs = new Date().getTime()
+    const localOffsetUTCMs = new Date().getTimezoneOffset() * 60 * 1000
+    const currentUTCTime = currentLocalTimeMs + localOffsetUTCMs
+    const desiredTime = currentUTCTime + timezoneShift * 1000
+    let desiredTimeHours = new Date(desiredTime).getHours()
+    let desiredTimeMinutes = new Date(desiredTime).getMinutes()
+
+    if (desiredTimeHours < 10) (desiredTimeHours = '0' + desiredTimeHours)
+    if (desiredTimeMinutes < 10) (desiredTimeMinutes = '0' + desiredTimeMinutes)
+
+    // console.log(desiredTimeHours + ':' + desiredTimeMinutes)
+    return desiredTimeHours + ':' + desiredTimeMinutes
   }
 
   render () {
@@ -60,7 +75,7 @@ export class WeatherData extends Component {
         <p class="description-additional-info">Feels like: ${this.weatherData.temperatureFeelsLike}</p>
         <p class="description-additional-info">Wind: ${this.weatherData.windSpeed} m/s</p>
         <p class="description-additional-info">Humidity: ${this.weatherData.humidityLevel}%</p>
-        <p class="description-additional-info">${this.weatherData.timezoneShift}</p>
+        <p class="description-additional-info">${this.weatherData.time}</p>
       </div>
     `
   }
