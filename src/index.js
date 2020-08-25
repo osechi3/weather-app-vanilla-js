@@ -9,6 +9,7 @@ export class App {
 
   static async sendWeatherRequest (city) {
     try {
+      this.weatherData.renderLoadingAnimation()
       await this.weatherData.getWeatherData(city)
       this.weatherData.render()
     } catch (error) {

@@ -112,6 +112,19 @@ export class WeatherData extends Component {
     })
   }
 
+  renderLoadingAnimation () {
+    const rootElement = document.querySelector('#app')
+    const containerData = document.querySelector('#container-data')
+    if (containerData === null) {
+      const newContainerData = document.createElement('div')
+      newContainerData.id = 'container-data'
+      newContainerData.innerHTML = '<div class="loaders"></div>'
+      rootElement.append(newContainerData)
+    } else {
+      containerData.innerHTML = '<div class="loaders"></div>'
+    }
+  }
+
   calculateTime (timezoneShift) {
     const currentLocalTimeMs = new Date().getTime()
     const localOffsetUTCMs = new Date().getTimezoneOffset() * 60 * 1000
