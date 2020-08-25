@@ -1,3 +1,4 @@
+import '../style.css'
 import { Component } from './Component'
 
 export class WeatherData extends Component {
@@ -45,7 +46,7 @@ export class WeatherData extends Component {
       <div class="block-main-info">
         <div class="group-icon">
           <img src="${this.weatherData.iconURL}">
-          <p class="description-icon">
+          <p id="description-icon">
             ${this.weatherData.weatherDescription.main}
           </p>
         </div>
@@ -54,8 +55,8 @@ export class WeatherData extends Component {
             ${this.convertToCelsius(this.weatherData.temperatureKelvin)}°C
           </p>
           <div class="buttons-temperature">
-            <button id="btn-celsius" type="button">°C</button>
-            <button id="btn-fahrenheit" type="button">°F</button>
+            <button class="btns btns-data" id="btn-celsius" type="button">°C</button>
+            <button class="btns btns-data" id="btn-fahrenheit" type="button">°F</button>
           </div>
         </div>
       </div>
@@ -69,7 +70,11 @@ export class WeatherData extends Component {
         <p class="description-additional-info">
           Humidity: ${this.weatherData.humidityLevel}%
         </p>
-        <p class="description-additional-info">${this.weatherData.time}</p>
+        <p
+          class="description-additional-info"
+          id="description-time">
+          ${this.weatherData.time}
+        </p>
       </div>
     `
 

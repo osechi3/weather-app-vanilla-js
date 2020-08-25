@@ -11,8 +11,8 @@ export class SearchBar extends Component {
   render () {
     const containerSearch = this.createBaseElement('div', null, 'container-search')
     containerSearch.innerHTML = `
-      <input type="text" placeholder="Enter city"></input>
-      <button>Search</button>
+      <input class="input-search" type="text" placeholder="Enter city"></input>
+      <button class="btns btns-search">Search</button>
     `
     const input = containerSearch.querySelector('input')
     const button = containerSearch.querySelector('button')

@@ -1,30 +1,146 @@
 body {
   margin: 0;
+  background-color: #EBF2FF;
 }
-.container {
+
+#app {
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  width: 600px;
+  width: 500px;
   height: 400px;
   margin: 100px auto;
 
-  outline: 1px solid;
+  overflow: hidden;
+  background-color: #C2D9FF;
+  border: 3px solid #A0C4FF;
+  border-radius: 15px;
 }
-.search-container {
-  outline: 1px solid;
-}
-.weather-container {
-  display: flex;
 
-  outline: 1px solid;
+/* SearchBar component */
+#container-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: inherit;
+  height: 70px;
+
+  background-color: #A0C4FF;
 }
-.extra-info-container {
+.input-search {
+  width: 300px;
+  height: 40px;
+
+  font-size: 20px;
+  text-align: center;
+
+  border: none;
+}
+.btns {
+  color: white;
+  font-size: 20px;
+
+  border: none;
+  background-color: #D65780;
+}
+.btns:hover {
+  background-color: #EA638C;
+}
+.btns-search {
+  width: 100px;
+  height: 42px;
+}
+
+/* Changing the placeholder */
+.input-search::-webkit-input-placeholder {
+  color: black;
+}
+.input-search::-moz-placeholder {
+  color: black;
+}
+.input-search:-ms-input-placeholder {
+  color: black;
+}
+.input-search:-moz-placeholder {
+  color: black;
+}
+
+/* WeatherData component */
+#container-data {
   display: flex;
   flex-direction: column;
 
-  outline: 1px solid;
+  margin-top: 50px;
+  width: inherit;
+
+  background-color: #C2D9FF;
+  /* outline: 1px solid; */
+}
+
+.block-main-info {
+  display: flex;
+  justify-content: center;
+
+  /* outline: 1px solid; */
+}
+.group-icon {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0;
+  padding-bottom: 30px;
+
+  /* outline: 1px solid; */
+}
+#description-icon {
+  position: absolute;
+  top: 80px;
+
+  margin: 0;
+
+  font-size: 20px;
+}
+.group-temperature {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* outline: 1px solid; */
+}
+#description-temperature {
+  margin: 0;
+
+  font-size: 56px;
+}
+
+.block-additional-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 15px;
+
+  /* outline: 1px solid; */
+}
+.description-additional-info {
+  margin: 2px 0;
+
+  font-size: 16px;
+}
+#description-time {
+  margin: 30px auto 0 auto;
+
+  font-size: 28px;
+}
+
+.btns-data {
+  margin: 0;
 }
 
 /* Helper classes */
