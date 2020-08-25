@@ -20,6 +20,7 @@ body {
 
 /* SearchBar component */
 #container-search {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,16 +30,38 @@ body {
 
   background-color: #A0C4FF;
 }
-.input-search {
+#input-search {
   width: 300px;
   height: 40px;
 
   font-size: 20px;
   text-align: center;
 
-  border: 1px transparent;
-  border-radius: 3px;
+  border: none;
+  border-top: 1px transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 }
+
+/* Changing the placeholder */
+#input-search::-webkit-input-placeholder {
+  color: black;
+}
+#input-search::-moz-placeholder {
+  color: black;
+}
+#input-search:-ms-input-placeholder {
+  color: black;
+}
+#input-search:-moz-placeholder {
+  color: black;
+}
+
+/* Changing the behaviour when invalid */
+input:invalid {
+  box-shadow: none;
+}
+
 .btns {
   color: white;
   font-size: 20px;
@@ -49,7 +72,7 @@ body {
 .btns:hover {
   background-color: #EA638C;
 }
-.btns-search {
+#btn-search {
   width: 100px;
   height: 42px;
 
@@ -57,20 +80,6 @@ body {
 
   border: 1px transparent;
   border-radius: 3px;
-}
-
-/* Changing the placeholder */
-.input-search::-webkit-input-placeholder {
-  color: black;
-}
-.input-search::-moz-placeholder {
-  color: black;
-}
-.input-search:-ms-input-placeholder {
-  color: black;
-}
-.input-search:-moz-placeholder {
-  color: black;
 }
 
 /* WeatherData component */
@@ -171,6 +180,24 @@ body {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/* Error message */
+#message-error {
+  position: absolute;
+  top: 38px;
+  left: 44px;
+  width: 290px;
+  padding: 6px;
+
+  font-size: 16px;
+  color: white;
+
+  background-color: #D65780;
+  border-bottom: 1px transparent;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
 
 /* Helper classes */
 .hidden {
