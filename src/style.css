@@ -87,7 +87,7 @@ input:invalid {
   display: flex;
   flex-direction: column;
 
-  margin-top: 50px;
+  margin-top: 40px;
   width: inherit;
 
   background-color: #C2D9FF;
