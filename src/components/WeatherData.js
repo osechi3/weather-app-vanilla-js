@@ -1,10 +1,11 @@
 import '../style.css'
+import { validateAPIRequest } from '../Validation'
 import { Component } from './Component'
 import {
   calculateTime,
   convertToCelsius,
   convertToFahrenheit
-} from '../helperFunctions'
+} from '../HelperFunctions'
 
 export class WeatherData extends Component {
   constructor (parentElement, shouldRender) {
@@ -19,7 +20,12 @@ export class WeatherData extends Component {
     return fetch(`${baseURL}?q=${city}&appid=${APIKey}`, { mode: 'cors' })
       .then(response => {
         console.log(response)
-        return response.json()
+
+        if (validateAPIRequest(response.status, response.ok)) {
+          return response.json()
+        } else {
+          throw new Error('The request has not been validated.')
+        }
       })
       .then(data => {
         console.log(data)
