@@ -92,27 +92,19 @@ export class WeatherData extends Component {
 
     buttonCelsius.addEventListener('click', () => {
       descriptionTemperature.innerHTML = `
-        <p id="description-temperature">
           ${convertToCelsius(this.weatherData.temperatureKelvin)}°C
-        </p>
       `
       descriptionFeelsLike.innerHTML = `
-        <p class="description-additional-info" id="description-feels-like">
           Feels like: ${convertToCelsius(this.weatherData.temperatureFeelsLike)}°C
-        </p>
       `
     })
 
     buttonFahrenheit.addEventListener('click', () => {
       descriptionTemperature.innerHTML = `
-        <p id="description-temperature">
           ${convertToFahrenheit(this.weatherData.temperatureKelvin)}°F
-        </p>
       `
       descriptionFeelsLike.innerHTML = `
-        <p class="description-additional-info" id="description-feels-like">
           Feels like: ${convertToFahrenheit(this.weatherData.temperatureFeelsLike)}°F
-        </p>
       `
     })
   }
