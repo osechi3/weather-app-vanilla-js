@@ -1,5 +1,10 @@
 import '../style.css'
 import { Component } from './Component'
+import {
+  calculateTime,
+  convertToCelsius,
+  convertToFahrenheit
+} from '../helperFunctions'
 
 export class WeatherData extends Component {
   constructor (parentElement, shouldRender) {
@@ -20,7 +25,7 @@ export class WeatherData extends Component {
         console.log(data)
         const fetchedWeatherData = {
           location: data.name,
-          time: this.calculateTime(data.timezone),
+          time: calculateTime(data.timezone),
           windSpeed: data.wind.speed,
           temperatureKelvin: data.main.temp,
           temperatureFeelsLike: data.main.feels_like,
@@ -52,7 +57,7 @@ export class WeatherData extends Component {
         </div>
         <div class="group-temperature">
           <p id="description-temperature">
-            ${this.convertToCelsius(this.weatherData.temperatureKelvin)}°C
+            ${convertToCelsius(this.weatherData.temperatureKelvin)}°C
           </p>
           <div class="buttons-temperature">
             <button class="btns btns-data" id="btn-celsius" type="button">°C</button>
@@ -62,7 +67,7 @@ export class WeatherData extends Component {
       </div>
       <div class="block-additional-info">
         <p class="description-additional-info" id="description-feels-like">
-          Feels like: ${this.convertToCelsius(this.weatherData.temperatureFeelsLike)}°C
+          Feels like: ${convertToCelsius(this.weatherData.temperatureFeelsLike)}°C
         </p>
         <p class="description-additional-info">
           Wind: ${this.weatherData.windSpeed} m/s
@@ -88,12 +93,12 @@ export class WeatherData extends Component {
     buttonCelsius.addEventListener('click', () => {
       descriptionTemperature.innerHTML = `
         <p id="description-temperature">
-          ${this.convertToCelsius(this.weatherData.temperatureKelvin)}°C
+          ${convertToCelsius(this.weatherData.temperatureKelvin)}°C
         </p>
       `
       descriptionFeelsLike.innerHTML = `
         <p class="description-additional-info" id="description-feels-like">
-          Feels like: ${this.convertToCelsius(this.weatherData.temperatureFeelsLike)}°C
+          Feels like: ${convertToCelsius(this.weatherData.temperatureFeelsLike)}°C
         </p>
       `
     })
@@ -101,12 +106,12 @@ export class WeatherData extends Component {
     buttonFahrenheit.addEventListener('click', () => {
       descriptionTemperature.innerHTML = `
         <p id="description-temperature">
-          ${this.convertToFahrenheit(this.weatherData.temperatureKelvin)}°F
+          ${convertToFahrenheit(this.weatherData.temperatureKelvin)}°F
         </p>
       `
       descriptionFeelsLike.innerHTML = `
         <p class="description-additional-info" id="description-feels-like">
-          Feels like: ${this.convertToFahrenheit(this.weatherData.temperatureFeelsLike)}°F
+          Feels like: ${convertToFahrenheit(this.weatherData.temperatureFeelsLike)}°F
         </p>
       `
     })
@@ -123,28 +128,5 @@ export class WeatherData extends Component {
     } else {
       containerData.innerHTML = '<div class="loaders"></div>'
     }
-  }
-
-  calculateTime (timezoneShift) {
-    const currentLocalTimeMs = new Date().getTime()
-    const localOffsetUTCMs = new Date().getTimezoneOffset() * 60 * 1000
-    const currentUTCTime = currentLocalTimeMs + localOffsetUTCMs
-    const desiredTime = currentUTCTime + timezoneShift * 1000
-    let desiredTimeHours = new Date(desiredTime).getHours()
-    let desiredTimeMinutes = new Date(desiredTime).getMinutes()
-
-    if (desiredTimeHours < 10) (desiredTimeHours = '0' + desiredTimeHours)
-    if (desiredTimeMinutes < 10) (desiredTimeMinutes = '0' + desiredTimeMinutes)
-
-    // console.log(desiredTimeHours + ':' + desiredTimeMinutes)
-    return desiredTimeHours + ':' + desiredTimeMinutes
-  }
-
-  convertToCelsius (temperatureKelvin) {
-    return Math.round(temperatureKelvin - 273.15)
-  }
-
-  convertToFahrenheit (temperatureKelvin) {
-    return Math.round(temperatureKelvin * 1.8 - 459.67)
   }
 }
