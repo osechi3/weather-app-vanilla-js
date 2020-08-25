@@ -36,7 +36,8 @@ body {
   font-size: 20px;
   text-align: center;
 
-  border: none;
+  border: 1px transparent;
+  border-radius: 3px;
 }
 .btns {
   color: white;
@@ -51,6 +52,11 @@ body {
 .btns-search {
   width: 100px;
   height: 42px;
+
+  margin-left: 10px;
+
+  border: 1px transparent;
+  border-radius: 3px;
 }
 
 /* Changing the placeholder */
