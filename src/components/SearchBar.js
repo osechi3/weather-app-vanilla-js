@@ -1,5 +1,5 @@
 import '../style.css'
-import { validateUserInput } from '../inputValidation'
+import { validateUserInput } from '../Validation'
 import { Component } from './Component'
 import { App } from '../index'
 
