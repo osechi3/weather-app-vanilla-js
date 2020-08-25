@@ -198,6 +198,15 @@ input:invalid {
   border-bottom-right-radius: 5px;
 }
 
+/* Welcome message */
+#message-welcome {
+  padding: 10px;
+  margin: 70px auto;
+
+  text-align: center;
+
+  font-size: 22px;
+}
 
 /* Helper classes */
 .hidden {

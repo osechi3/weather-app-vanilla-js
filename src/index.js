@@ -16,4 +16,18 @@ export class App {
       console.log(error)
     }
   }
+
+  static displayWelcomeMessage () {
+    const rootElement = document.querySelector('#app')
+    const containerData = document.createElement('div')
+    containerData.id = 'container-data'
+    containerData.innerHTML = `
+      <div id="message-welcome">
+        Type a city name in the field above to find out the weather there.
+      </div>
+    `
+    rootElement.append(containerData)
+  }
 }
+
+App.displayWelcomeMessage()
