@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -33,6 +34,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Weather App Vanilla JS',
       template: './src/index.html'
-    })
+    }),
+
+    new OptimizeCSSAssetsPlugin({})
   ]
 }
