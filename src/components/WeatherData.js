@@ -19,7 +19,7 @@ export class WeatherData extends Component {
     const APIKey = 'fd7cfe090aef0df3ea6c07e20f009d58'
     return fetch(`${baseURL}?q=${city}&appid=${APIKey}`, { mode: 'cors' })
       .then(response => {
-        console.log(response)
+        // console.log(response)
 
         if (validateAPIRequest(response.status, response.ok)) {
           return response.json()
@@ -28,7 +28,7 @@ export class WeatherData extends Component {
         }
       })
       .then(data => {
-        console.log(data)
+        // console.log(data)
         const fetchedWeatherData = {
           location: data.name,
           time: calculateTime(data.timezone),
@@ -39,8 +39,9 @@ export class WeatherData extends Component {
           weatherDescription: data.weather[0],
           iconURL: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
         }
-        console.log(fetchedWeatherData)
+        // console.log(fetchedWeatherData)
         this.weatherData = fetchedWeatherData
+        return true
       })
       .catch(error => {
         console.log(error)
@@ -89,6 +90,7 @@ export class WeatherData extends Component {
       </div>
     `
 
+    /* Displaying temperature in Celsius and Fahrenheit on button clicks */
     const buttonCelsius = containerData.querySelector('#btn-celsius')
     const buttonFahrenheit = containerData.querySelector('#btn-fahrenheit')
     const descriptionTemperature =
@@ -115,6 +117,8 @@ export class WeatherData extends Component {
     })
   }
 
+  /* Replacing the element that will contain the fetched weather data
+     with an animated div element */
   renderLoadingAnimation () {
     const rootElement = document.querySelector('#app')
     const containerData = document.querySelector('#container-data')

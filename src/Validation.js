@@ -13,7 +13,6 @@ export function validateUserInput () {
 }
 
 export function validateAPIRequest (errorType, isOk) {
-  console.log('Validating API request...')
   if (isOk) {
     return true
   } else if (errorType === 404) {
